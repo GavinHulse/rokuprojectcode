@@ -1,0 +1,68 @@
+<?xml version = "1.0" encoding = "utf-8" ?> 
+
+<component name = "ButtonExample" extends = "Scene" initialFocus = "exampleButton" >
+
+  <script type = "text/brightscript" >
+
+    <![CDATA[
+
+    sub init()
+      m.top.backgroundURI = "pkg:/images/rsgde_bg_hd.jpg"
+
+      example = m.top.findNode("exampleButton")
+
+      examplerect = example.boundingRect()
+      centerx = (1280 - examplerect.width) / 2
+      centery = (720 - examplerect.height) / 2
+      example.translation = [ centerx, centery ]
+
+      m.top.setFocus(true)
+
+      m.label = m.top.findNode("exampleLabel")
+ 
+      otherrect = m.label.boundingRect()
+      centerx = (700 - otherrect.width) / 2
+      centery = (720 - otherrect.height) / 2
+      m.label.translation = [ centerx, centery ]
+
+    end sub
+
+    function onKeyEvent(key as String, press as Boolean) as Boolean
+        if press then
+            if (key = "play") then
+            if (m.label.visible = true)
+                m.label.text = "You Pressed play!"
+            else
+                m.label.visible = true
+            endif
+    
+            return true
+            end if
+        end if
+    
+        return false
+    end function
+
+    ]]>
+
+  </script>
+
+  <children >
+
+    <Button
+      id = "exampleButton"
+      text = "Button"
+      showFocusFootprint = "true"
+      minWidth = "240" />
+
+    <Label
+        id = "exampleLabel"
+        width = "600"
+        height = "60"
+        text = "Press play to Hide/Show"
+        horizAlign = "center"
+        vertAlign = "center"
+        visible = "true" />
+  </children>
+
+</component>
